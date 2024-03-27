@@ -1,11 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import TodoItems from './components/TodoItems';
+import { FlatList, StyleSheet, TextInput, View } from 'react-native';
 
 export default function App() {
+  const [todos, setTodos] = useState([
+    { title: "Love in the air", key: '1' },
+    { title: "Reebells from inside", key: '2' },
+    { title: "Dear me, let be", key: '3' }
+  ])
+
   return (
     <View style={styles.container}>
-      <Text>Love in air</Text>
-      <StatusBar style="auto" />
+      <Header />
+      <View style={styles.content}>
+        <View style={styles.list}>
+          <FlatList data={todos} renderItem={({ item }) => (
+            <TodoItems item={item} />
+            // <Text>{item.title}</Text>
+          )} />
+        </View>
+      </View>
     </View>
   );
 }
@@ -14,7 +29,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  content: {
+    paddingTop: 30,
+    paddingHorizontal: 20,
+  }
 });
