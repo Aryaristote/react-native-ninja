@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function TodoItems({ item }) {
-
-    <View style={styles.love}>
-        <Text>Love</Text>
-        <TouchableOpacity>
-            <Text style={styles.item}>{item.text}</Text>
-        </TouchableOpacity>
-    </View>
+export default function TodoItems({ item, clickHandler }) {
+    return (
+        <View style={styles.item}>
+            <TouchableOpacity onPress={() => clickHandler(item.key)}>
+                <Text>{item.title}</Text>
+            </TouchableOpacity>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
